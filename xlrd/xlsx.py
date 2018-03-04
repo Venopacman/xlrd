@@ -626,12 +626,14 @@ class X12Sheet(X12General):
 
         row_number = row_elem.get('r')
         if row_number is None: # Yes, it's optional.
+            print('row_number is None!')
             self.rowx += 1
             explicit_row_number = 0
             if self.verbosity and not self.warned_no_row_num:
                 self.dumpout("no row number; assuming rowx=%d", self.rowx)
                 self.warned_no_row_num = 1
         else:
+            print('explicit_row_number changing!')
             self.rowx = int(row_number) - 1
             explicit_row_number = 1
         print('jopa')
