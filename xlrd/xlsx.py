@@ -634,6 +634,9 @@ class X12Sheet(X12General):
         else:
             self.rowx = int(row_number) - 1
             explicit_row_number = 1
+        print('jopa')
+        print(self.rowx)
+        print(X12_MAX_ROWS)
         # assert 0 <= self.rowx < X12_MAX_ROWS
         rowx = self.rowx
         colx = -1
