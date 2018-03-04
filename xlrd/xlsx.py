@@ -633,13 +633,9 @@ class X12Sheet(X12General):
                 self.dumpout("no row number; assuming rowx=%d", self.rowx)
                 self.warned_no_row_num = 1
         else:
-            print('explicit_row_number changing!')
-            self.rowx = int(row_number) - 1
+            self.rowx = int(row_number) - 1 if self.rowx > 0 else self.rowx
             explicit_row_number = 1
-        print('jopa')
-        print(self.rowx)
-        print(X12_MAX_ROWS)
-        # assert 0 <= self.rowx < X12_MAX_ROWS
+        assert 0 <= self.rowx < X12_MAX_ROWS
         rowx = self.rowx
         colx = -1
         if self.verbosity >= 3:
@@ -672,10 +668,6 @@ class X12Sheet(X12General):
                             break
                 except KeyError:
                     raise Exception('Unexpected character %r in cell name %r' % (c, cell_name))
-                print('xui')
-                print(cell_name[charx:])
-                print(row_number)
-                print(explicit_row_number)
                 if explicit_row_number and cell_name[charx:] != row_number:
                     raise Exception('cell name %r but row number is %r' % (cell_name, row_number))
             xf_index = int(cell_elem.get('s', '0'))
