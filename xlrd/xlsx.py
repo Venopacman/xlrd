@@ -788,6 +788,7 @@ class X12Sheet(X12General):
         else:
             print(self.rowx)
             self.rowx = (int(row_number) - 1) if self.rowx > 0 else self.rowx
+            self.rowx = self.rowx + 1 if self.rowx < 0 else self.rowx
             explicit_row_number = 1
             print(self.rowx)
         assert 0 <= self.rowx < X12_MAX_ROWS
