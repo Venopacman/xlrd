@@ -670,6 +670,10 @@ class X12Sheet(X12General):
                             break
                 except KeyError:
                     raise Exception('Unexpected character %r in cell name %r' % (c, cell_name))
+                print('xui')
+                print(cell_name[charx:])
+                print(row_number)
+                print(explicit_row_number)
                 if explicit_row_number and cell_name[charx:] != row_number:
                     raise Exception('cell name %r but row number is %r' % (cell_name, row_number))
             xf_index = int(cell_elem.get('s', '0'))
