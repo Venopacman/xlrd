@@ -778,22 +778,16 @@ class X12Sheet(X12General):
                 (cell_type, child_tag, rowx, colx))
 
         row_number = row_elem.get('r')
-        # print(type(row_number), row_number)
-        # print(row_number==0)
-        # print((row_number is None) or (row_number==0))
         if (row_number is None) or (int(row_number)==0):  # Yes, it's optional.
-            print('row_number is None!')
             self.rowx += 1
             explicit_row_number = 0
             if self.verbosity and not self.warned_no_row_num:
                 self.dumpout("no row number; assuming rowx=%d", self.rowx)
                 self.warned_no_row_num = 1
         else:
-            print(self.rowx)
             self.rowx = (int(row_number) - 1) if self.rowx > 0 else self.rowx
             self.rowx = self.rowx + 1 if self.rowx < 0 else self.rowx
             explicit_row_number = 1
-            print(self.rowx)
         assert 0 <= self.rowx < X12_MAX_ROWS
         rowx = self.rowx
         colx = -1
