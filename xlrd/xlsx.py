@@ -778,6 +778,7 @@ class X12Sheet(X12General):
                 (cell_type, child_tag, rowx, colx))
 
         row_number = row_elem.get('r')
+        print(row_number)
         if row_number is None or row_number==0:  # Yes, it's optional.
             print('row_number is None!')
             self.rowx += 1
